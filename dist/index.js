@@ -1206,8 +1206,13 @@ function getSource(settings) {
                     // Otherwise all git commands we run in a container fail
                     yield authHelper.configureTempGlobalConfig();
                     core.info(`Adding repository directory to the temporary git global config as a safe directory`);
+                    // Use GITHUB_WORKSPACE instead of settings.repositoryPath for container compatibility
+                    const workspaceDirectory = process.env.GITHUB_WORKSPACE || settings.repositoryPath;
+                    core.info(`Current settings.repositoryPath: ${settings.repositoryPath}`);
+                    core.info(`Current GITHUB_WORKSPACE: ${workspaceDirectory}`);
+                    core.info(`Setting safe directory to: ${workspaceDirectory}`);
                     yield git
-                        .config('safe.directory', settings.repositoryPath, true, true)
+                        .config('safe.directory', workspaceDirectory, true, true)
                         .catch(error => {
                         core.info(`Failed to initialize safe directory with error: ${error}`);
                     });
