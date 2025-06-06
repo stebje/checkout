@@ -635,8 +635,6 @@ class GitCommandManager {
             }
             args.push(...[configKey, configValue]);
             yield this.execGit(args);
-            // REMOVE
-            yield this.execGit(['config', '--list']);
         });
     }
     configExists(configKey, globalConfig) {
@@ -1411,6 +1409,7 @@ function cleanup(repositoryPath) {
         }
         finally {
             yield authHelper.removeGlobalConfig();
+            yield git.config('safe.directory', repositoryPath, true, true);
         }
     });
 }
