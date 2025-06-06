@@ -1408,7 +1408,7 @@ function cleanup(repositoryPath) {
             yield authHelper.removeAuth();
         }
         finally {
-            yield authHelper.removeGlobalConfig();
+            //await authHelper.removeGlobalConfig()
         }
     });
 }
