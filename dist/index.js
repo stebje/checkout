@@ -1021,6 +1021,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.prepareExistingDirectory = prepareExistingDirectory;
 const assert = __importStar(__nccwpck_require__(9491));
 const core = __importStar(__nccwpck_require__(2186));
+const fs = __importStar(__nccwpck_require__(7147));
 const fsHelper = __importStar(__nccwpck_require__(7219));
 const io = __importStar(__nccwpck_require__(7436));
 const path = __importStar(__nccwpck_require__(1017));
@@ -1111,14 +1112,14 @@ function prepareExistingDirectory(git, repositoryPath, repositoryUrl, clean, ref
                 remove = true;
             }
         }
-        /**if (remove) {
-          // Delete the contents of the directory. Don't delete the directory itself
-          // since it might be the current working directory.
-          core.info(`Deleting the contents of '${repositoryPath}'`)
-          for (const file of await fs.promises.readdir(repositoryPath)) {
-            await io.rmRF(path.join(repositoryPath, file))
-          }
-        }*/
+        if (remove) {
+            // Delete the contents of the directory. Don't delete the directory itself
+            // since it might be the current working directory.
+            core.info(`Deleting the contents of '${repositoryPath}'`);
+            for (const file of yield fs.promises.readdir(repositoryPath)) {
+                yield io.rmRF(path.join(repositoryPath, file));
+            }
+        }
     });
 }
 
