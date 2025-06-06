@@ -1371,7 +1371,7 @@ function getSource(settings) {
                     yield authHelper.removeAuth();
                     core.endGroup();
                 }
-                authHelper.removeGlobalConfig();
+                //authHelper.removeGlobalConfig()
             }
         }
     });
@@ -1412,7 +1412,7 @@ function cleanup(repositoryPath) {
             yield authHelper.removeAuth();
         }
         finally {
-            //await authHelper.removeGlobalConfig()
+            yield authHelper.removeGlobalConfig();
         }
     });
 }

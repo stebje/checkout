@@ -288,7 +288,7 @@ export async function getSource(settings: IGitSourceSettings): Promise<void> {
         await authHelper.removeAuth()
         core.endGroup()
       }
-      authHelper.removeGlobalConfig()
+      //authHelper.removeGlobalConfig()
     }
   }
 }
@@ -339,7 +339,7 @@ export async function cleanup(repositoryPath: string): Promise<void> {
 
     await authHelper.removeAuth()
   } finally {
-    //await authHelper.removeGlobalConfig()
+    await authHelper.removeGlobalConfig()
   }
 }
 
