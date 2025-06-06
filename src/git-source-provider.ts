@@ -46,7 +46,9 @@ export async function getSource(settings: IGitSourceSettings): Promise<void> {
       if (settings.setSafeDirectory) {
         // Setup the repository path as a safe directory, so if we pass this into a container job with a different user it doesn't fail
         // Otherwise all git commands we run in a container fail
+        core.info(`Current home directory: ${process.env.HOME}`)
         await authHelper.configureTempGlobalConfig()
+        core.info(`New home directory: ${process.env.HOME}`)
         //core.info(
         //  `Adding repository directory to the temporary git global config as a safe directory`
         //)
