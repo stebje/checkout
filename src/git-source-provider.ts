@@ -336,7 +336,6 @@ export async function cleanup(repositoryPath: string): Promise<void> {
     await authHelper.removeAuth()
   } finally {
     await authHelper.removeGlobalConfig()
-    await git.config('safe.directory', repositoryPath, true, true)
   }
 }
 

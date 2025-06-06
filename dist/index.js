@@ -1409,7 +1409,6 @@ function cleanup(repositoryPath) {
         }
         finally {
             yield authHelper.removeGlobalConfig();
-            yield git.config('safe.directory', repositoryPath, true, true);
         }
     });
 }
