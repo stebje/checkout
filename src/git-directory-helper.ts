@@ -114,12 +114,12 @@ export async function prepareExistingDirectory(
     }
   }
 
-  if (remove) {
+  /**if (remove) {
     // Delete the contents of the directory. Don't delete the directory itself
     // since it might be the current working directory.
     core.info(`Deleting the contents of '${repositoryPath}'`)
     for (const file of await fs.promises.readdir(repositoryPath)) {
       await io.rmRF(path.join(repositoryPath, file))
     }
-  }
+  }*/
 }
