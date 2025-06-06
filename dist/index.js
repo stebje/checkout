@@ -1204,7 +1204,7 @@ function getSource(settings) {
                 if (settings.setSafeDirectory) {
                     // Setup the repository path as a safe directory, so if we pass this into a container job with a different user it doesn't fail
                     // Otherwise all git commands we run in a container fail
-                    //await authHelper.configureTempGlobalConfig()
+                    yield authHelper.configureTempGlobalConfig();
                     //core.info(
                     //  `Adding repository directory to the temporary git global config as a safe directory`
                     //)
