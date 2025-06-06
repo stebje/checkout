@@ -324,8 +324,10 @@ export async function cleanup(repositoryPath: string): Promise<void> {
         `Adding repository directory to the temporary git global config as a safe directory`
       )
 
+      const workspaceDirectory = process.env.GITHUB_WORKSPACE || repositoryPath
+
       await git
-        .config('safe.directory', repositoryPath, true, true)
+        .config('safe.directory', workspaceDirectory, true, true)
         .catch(error => {
           core.info(`Failed to initialize safe directory with error: ${error}`)
         })

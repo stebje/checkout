@@ -1398,8 +1398,9 @@ function cleanup(repositoryPath) {
                 // Otherwise all git commands we run in a container fail
                 yield authHelper.configureTempGlobalConfig();
                 core.info(`Adding repository directory to the temporary git global config as a safe directory`);
+                const workspaceDirectory = process.env.GITHUB_WORKSPACE || repositoryPath;
                 yield git
-                    .config('safe.directory', repositoryPath, true, true)
+                    .config('safe.directory', workspaceDirectory, true, true)
                     .catch(error => {
                     core.info(`Failed to initialize safe directory with error: ${error}`);
                 });
