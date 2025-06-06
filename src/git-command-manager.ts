@@ -232,7 +232,7 @@ class GitCommandManager {
     args.push(...[configKey, configValue])
     await this.execGit(args)
     // REMOVE
-    await this.execGit(['config, --list'])
+    await this.execGit(['config', '--list'])
   }
 
   async configExists(
