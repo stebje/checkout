@@ -46,10 +46,10 @@ export async function getSource(settings: IGitSourceSettings): Promise<void> {
       if (settings.setSafeDirectory) {
         // Setup the repository path as a safe directory, so if we pass this into a container job with a different user it doesn't fail
         // Otherwise all git commands we run in a container fail
-        await authHelper.configureTempGlobalConfig()
-        core.info(
-          `Adding repository directory to the temporary git global config as a safe directory`
-        )
+        //await authHelper.configureTempGlobalConfig()
+        //core.info(
+        //  `Adding repository directory to the temporary git global config as a safe directory`
+        //)
 
         // Use GITHUB_WORKSPACE instead of settings.repositoryPath for container compatibility
         const workspaceDirectory = process.env.GITHUB_WORKSPACE || settings.repositoryPath
@@ -288,7 +288,7 @@ export async function getSource(settings: IGitSourceSettings): Promise<void> {
         await authHelper.removeAuth()
         core.endGroup()
       }
-      //authHelper.removeGlobalConfig()
+      authHelper.removeGlobalConfig()
     }
   }
 }
